@@ -1,49 +1,49 @@
 package dinamikdizi;
-
+    // 1-Yazacağımız yeni dinamik dizi sınıfının ismi DinamikDizi olsun
 public class DinamikDizi{
-   
+    // 2-Kolaylık açısından geliştireceğiniz dinamik diziniz int verileri ile işlem yapabilsin.
     private int array[];
     private int size;
     private int capacity;
      
-    // default constructor to initialize the array and values
+    // 3-Dinamik dizi ilk yapıldığında varsayılan olarak 5 elemanlı (length i 5 olsun) olsun
     public DinamikDizi(){
-        array = new int[2];
+        array = new int[5];
         size=0;
-        capacity=2;
+        capacity=5;
     }
      
-    // to add an element at the end
+    // 4-Dinamik diziye yeni bir veri girmek için ekle(veri) metodu tanımlanmalıdır.
     public void addElement(int element){
-        // double the capacity if all the allocated space is utilized
         if (size == capacity){
-            ensureCapacity(2); 
+            ensureCapacity(5); 
         }
         array[size] = element;
         size++;
     }
-     
-    // to add an element at a particular index
+    
+    /* 4-Dinamik diziye yeni bir veriyi istenilen indekse  
+    *  bırakabilmek için ekle(veri,index) metodu tanımlanmalıdır*/     
     public void addElement(int index, int element){
-        // double the capacity if all the allocated space is utilized
+        
         if (size == capacity){
             ensureCapacity(2); 
         }
-        // shift all elements from the given index to right
+
         for(int i=size-1;i>=index;i--){
             array[i+1] = array[i];
         }
-        // insert the element at the specified index
+
         array[index] = element;
         size++;
     }
  
-    // to get an element at an index
+    // 5-indexten veri almak için
     public int getElement(int index){
         return array[index];
     }
      
-    // to remove an element at a particular index
+    // 6-Dinamik diziden eleman silmek için sil(), sil(veri), sil(index) metodları tanımlanmaldır
     public void remove(int index){
         if(index>=size || index<0){
             System.out.println("No element at this index");
@@ -56,9 +56,8 @@ public class DinamikDizi{
         }
     }
      
-    /* method to increase the capacity, if necessary, to ensure it can hold at least the 
-    *  number of elements specified by minimum capacity arguement
-    */
+    // 7-Dinamik dizinin kapasitesini öğrenebilmek için kapasite() metodu tanımlanmalıdır
+
     public void ensureCapacity(int minCapacity){
         int temp[] = new int[capacity*minCapacity];
         for (int i=0; i < capacity; i++){
@@ -68,9 +67,8 @@ public class DinamikDizi{
         capacity = capacity * minCapacity;
     }
      
-    /*
-    *  Trim the capacity of dynamic array to the current size. i.e. remove unused space
-    */
+    /* 8-Dinamik diziden verileri sildikçe dizinin kapasitesini 
+    de orantılı bir şekilde otomatik küçültmelisiniz*/
     public void trimToSize(){
         System.out.println("Trimming the array");
         int temp[] = new int[size];
@@ -82,14 +80,17 @@ public class DinamikDizi{
          
     }
      
-    // to get the current size
+    /* 9-Dinamik dizinin uzunluğunu (size)
+    öğrenebilmek için uzunluk() metodu tanımlanmalıdır.*/
     public int size(){
         return size;
     }
      
-    // to get the current capacity
+    /* 10-Dinamik dizinin uzunluğunu (capacity)
+    öğrenebilmek için uzunluk() metodu tanımlanmalıdır.*/
     public int capacity(){
         return capacity;
     }
-     
+   
 }
+     
